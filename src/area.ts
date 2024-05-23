@@ -9,10 +9,16 @@ export function maxArea(height: number[]): number {
         throw new Error("Height input is invalid.");
     }
 
-    // for(var i = 0; i < height.length; i++) {
-    //     for
-    // }
-  
+    for (var i = 0; i < height.length; i++) {
+        for (var j = i + 1; j < height.length; j++) {
+            var area = calculateArea(height[i], height[j], j - i);
+
+            if (area > maximumArea) {
+                maximumArea = area;
+            }
+        }
+    }
+
     return maximumArea;
 }
 
@@ -28,7 +34,7 @@ function isValidInput(height: number[]): boolean {
     if (n < 2 || n > 105) return false;
 
     // check height of buildings
-    const invalidHeight = height.filter( i => (i < 0 || i > 104) ).length > 0;
+    const invalidHeight = height.filter(i => (i < 0 || i > 104)).length > 0;
     if (invalidHeight) return false;
 
 
